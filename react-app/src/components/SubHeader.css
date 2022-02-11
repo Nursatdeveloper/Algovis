@@ -88,6 +88,11 @@
     border-radius: 50%; 
     background: #24305E;
     cursor: pointer;
+    transition: background-color 0.5s ease-out;
+}
+
+.slider::-webkit-slider-thumb:hover{
+    background-color: #374785;
 }
 
 .slider::-moz-range-thumb {
@@ -117,7 +122,7 @@
     transition: background-color 0.5s ease-out, color 0.5s ease-out; 
 }
 .subheader__sort_btn:hover{
-    background-color: #24305E;
+    background-color: #374785;
     color:#F8E9A1;
     cursor:pointer;
 }

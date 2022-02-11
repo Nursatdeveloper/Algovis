@@ -1,8 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
+import SortingParam from '../types/SortingParam';
 import './Header.css'
 import SubHeader from './SubHeader'
 
-const Header = () => {
+interface HeaderProps{
+    sortParam:(item:SortingParam) => void;
+    startSorting:(start:boolean) => void;
+}
+
+const Header: FC<HeaderProps> = ({sortParam, startSorting, children}) => {
     const [subHeaderProps, setSubHeaderProps] = useState({
         show:false,
         marginTop:0
@@ -10,6 +16,19 @@ const Header = () => {
 
     const [algorithmType, setAlgorithmType] = useState<string>('');
     const [range, setRange] = useState<number>(0);
+
+    useEffect(()=> {
+        if(algorithmType != '' && range != 0){
+            let param:SortingParam = {algorithm:algorithmType, range:range}
+            sortParam(param)
+        }
+        else if (algorithmType == '' && range != 0){
+            let param:SortingParam = {algorithm:'', range:range}
+            sortParam(param)
+        }
+    }, [algorithmType, range])
+
+
 
 
     function toggleSortingSubheader(){
@@ -21,7 +40,7 @@ const Header = () => {
         }else {
             setSubHeaderProps({
                 show: true,
-                marginTop:60
+                marginTop:53
             })
         }
 
@@ -38,14 +57,12 @@ const Header = () => {
             <div className='header__item_wrapper hover__underline_animation'>
                 <span onClick={()=>toggleSortingSubheader()}>Sorting visualization</span>
             </div>
-            {algorithmType !== '' ? <div>{algorithmType}</div> : null }
-            {range != 0 ? <div>{range}</div> : null}
         </div>
         <SubHeader 
+            setStartSorting={startSorting}
             setAlgorithmType={setAlgorithmType}
             setRange={setRange}
             marginTop={subHeaderProps.marginTop}
-            show={subHeaderProps.show}
         />
     </div>
     

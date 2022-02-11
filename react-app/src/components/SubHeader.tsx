@@ -7,29 +7,46 @@ interface ISortParam{
 }
 
 interface SubHeaderProps {
-    show:boolean;
     marginTop:number;
     setAlgorithmType:(type:string) => void;
     setRange:(range:number) => void;
+    setStartSorting:(start:boolean) => void;
 }
 
-const SubHeader:FC<SubHeaderProps> = ({show, marginTop, setAlgorithmType, setRange}) => {
+const SubHeader:FC<SubHeaderProps> = ({
+    marginTop, 
+    setAlgorithmType, 
+    setRange,
+    setStartSorting,
+    children
+}) => {
     const [dataRange, setDataRange] = useState<number>(10);
-    const [algorithm, setAlgorithm] = useState<string>('undefined');
+    const [algorithm, setAlgorithm] = useState<string>('');
 
     function handleSortClick(){
-        setRange(dataRange);
-        setAlgorithmType(algorithm);
-        console.log(dataRange);
-        console.log(algorithm);
+        if(algorithm != '' && dataRange != 0){
+            setStartSorting(true);
+        }
+        
+    }
+
+    const handleRangeChange =  (e: React.ChangeEvent<HTMLInputElement>,):void => {
+        setRange(parseInt(e.target.value))
+        setDataRange(parseInt(e.target.value))
+    }
+
+    const handleAlgorithmChange = (value:string) => {
+        setAlgorithm(value)
+        setAlgorithmType(value);
     }
 
   return (
     <div className='subheader__container' style={{marginTop:marginTop}}>
         <div className='subheader__algorithm_wrapper'>
             <span className='subheader__text'>Algorithm:</span>
-            <select className='subheader__select_option' onChange={(e)=> setAlgorithm(e.target.value)}>
+            <select className='subheader__select_option' onChange={(e)=> handleAlgorithmChange(e.target.value)}>
                 <option>Choose</option>
+                <option>Selection sort</option>
                 <option>Quicksort</option>
                 <option>Bubblesort</option>
             </select>
@@ -41,13 +58,16 @@ const SubHeader:FC<SubHeaderProps> = ({show, marginTop, setAlgorithmType, setRan
                 </div>
                 <div className='slider_input'>
                     <input type="range" min="10" max="100" value={dataRange} className="slider" 
-                        onInput={(e: React.ChangeEvent<HTMLInputElement>,):void => setDataRange(parseInt(e.target.value))}/>
+                        onInput={(e: React.ChangeEvent<HTMLInputElement>,):void => handleRangeChange(e)}/>
                 </div>
                 <div className='slider_range_wrapper'>
-                    <input type='text' className='slider_range' value={dataRange} onChange={(e)=> setDataRange(parseInt(e.target.value))}/>
+                    <input type='text' className='slider_range' value={dataRange} onChange={(e)=> handleRangeChange(e)}/>
                 </div>
             </div>
         </div>
+        <div>Speed</div>
+        
+        {children}
         <div className='subheader__btn_container'>
             <button className='subheader__sort_btn' onClick={handleSortClick} >Sort</button>
         </div>
