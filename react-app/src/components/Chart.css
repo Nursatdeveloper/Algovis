@@ -1,0 +1,14 @@
+.column{
+    width:10px;
+    background-color: #374785;
+}
+.chart__container{
+    border:1px solid #24305E;
+    position:absolute;
+    margin-top:200px;
+    display: flex;
+    width:60%;
+    margin-left:20%;
+    margin-right:20%;
+    padding:10px;
+}
