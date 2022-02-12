@@ -1,26 +1,14 @@
-import React, { FC, useEffect, useState } from 'react'
-import './Chart.css'
+import React, { FC } from 'react'
 
-interface ColumnProps{
-    id:number;
+interface ColumnProps {
     height:number;
-    current:number;
-    next:number;
+    bgColor:string;
 }
 
-const Column:FC<ColumnProps> = ({id, height, current, next}) => {
-  const [bgColor, setBgColor] = useState('')
-  
-  /*if(key == current || key == next){
-    setBgColor('red');
-    console.log('red');
-  }else{
-    setBgColor('green')
-    console.log('green')
-  }*/
+const Column: FC<ColumnProps> = ({height, bgColor}) => {
   return (
-    <div className='column' key={id} style={{height:height, backgroundColor:bgColor}}></div>
-    
+    <div className='column' style={{height:height, backgroundColor:bgColor}}>
+            </div>
   )
 }
 

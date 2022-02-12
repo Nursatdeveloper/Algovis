@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import Quicksort from './algorithms/Quicksort';
+import BubbleSort from './algorithms/BubbleSort';
+import InsertionSort from './algorithms/InsertionSort';
 import SelectionSort from './algorithms/SelectionSort';
 import API_URL from './ApiUrl';
 import './App.css';
 import Chart from './components/Chart';
 import Header from './components/Header';
+import RightSidebar from './components/RightSidebar';
 import ISortingData from './types/ISortingData';
 import SortingParam from './types/SortingParam';
 
@@ -20,7 +22,6 @@ function App() {
     currentIndex:0,
     changingIndex:0
   });
-  const [highlightIndexes, setHighlightIndexes] = useState<number[]>([]);
   const apiUrl = API_URL;
 
   useEffect(()=>{
@@ -46,12 +47,16 @@ function App() {
 
   function defineAlgorithm(){
     let timeout = 300/sortParams.speed
-    if(sortParams.algorithm == 'Quicksort'){
-      //Quicksort(data, setData, timeout)
+    if(sortParams.algorithm == 'Bubble sort'){
+      BubbleSort(data, setData, timeout)
       setStartSort(false);
     }
     else if (sortParams.algorithm == 'Selection sort'){
       SelectionSort(data, setData, timeout)
+      setStartSort(false);
+    }
+    else if (sortParams.algorithm == 'Insertion sort'){
+      InsertionSort(data, setData, timeout)
       setStartSort(false);
     }
   }
@@ -61,10 +66,15 @@ function App() {
   return (
     <div className="App">
       <Header startSorting={setStartSort} sortParam={setSortParams}/>
-      {sortParams.range != 0 ? 
-        <Chart 
-          data={data}
-        /> :null}
+      <div className='main_container'>
+        {sortParams.range != 0 ? 
+          <Chart 
+            data={data}
+          /> :null}
+
+        {sortParams.algorithm != '' ? <RightSidebar /> : null }
+        
+      </div>
     </div>
   );
 }

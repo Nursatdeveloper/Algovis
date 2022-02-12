@@ -8,28 +8,47 @@ interface ChartProps{
 }
 
 const Chart:FC<ChartProps> = ({data}) => {
-  const [columnBgColor, setColumnBgColor] = useState<string>('green')
-  const [index, setIndex] = useState<number>(-1);
   
   function getBgColor(index:number){
-    if(index == data.currentIndex || index == data.changingIndex){
-      return 'red'
-    }else{
-      return 'green'
+    if(index == data.currentIndex){
+      return '#ff3300'
+    }
+    else if (index == data.changingIndex){
+      return '#0099ff'
+    }
+
+    else{
+      return '#24306E';
     }
   }
 
   return (
     <div className='chart__container'>
       <div className='chart__header'>
-        
+        <div className='color_definition'>
+          <div className='darkblue_square'>
+
+          </div>
+          <span>Sample data</span>
+        </div>
+        <div className='color_definition'>
+          <div className='red_square'>
+
+          </div>
+          <span>Current item</span>
+        </div>
+        <div className='color_definition'>
+          <div className='blue_square'>
+
+          </div>
+          <span>Changing item</span>
+        </div>
       </div>
       <div className='chart__body'>
         {data.array.map(function(height, i) {
           var color:string = getBgColor(i)
           return  (
-            <div className='column' key={i++} style={{height:height, backgroundColor:color}}>
-            </div>
+            <Column key={i++} height={height} bgColor={color} />
           )
 
         })}

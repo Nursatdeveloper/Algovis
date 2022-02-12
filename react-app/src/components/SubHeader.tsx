@@ -42,7 +42,7 @@ const SubHeader:FC<SubHeaderProps> = ({
     }
 
     const handleSpeedChange = (increase:boolean) => {
-        if(increase && speed < 3){
+        if(increase && speed < 4){
             setSpeed(speed+1);
         }
         if(!increase && speed > 1){
@@ -56,9 +56,10 @@ const SubHeader:FC<SubHeaderProps> = ({
             <span className='subheader__text'>Algorithm:</span>
             <select className='subheader__select_option' onChange={(e)=> handleAlgorithmChange(e.target.value)}>
                 <option>Choose</option>
+                <option>Bubble sort</option>
                 <option>Selection sort</option>
-                <option>Quicksort</option>
-                <option>Bubblesort</option>
+                <option>Insertion sort</option>
+                <option>Quick sort</option>          
             </select>
         </div>
         <div className="subheader__slide_container">
