@@ -26,6 +26,8 @@ const SubHeader:FC<SubHeaderProps> = ({
     function handleSortClick(){
         if(algorithm != '' && dataRange != 0){
             setStartSorting(true);
+            setSpeedValue(speed)
+            setAlgorithmType(algorithm);
         }
         
     }
@@ -37,17 +39,14 @@ const SubHeader:FC<SubHeaderProps> = ({
 
     const handleAlgorithmChange = (value:string) => {
         setAlgorithm(value)
-        setAlgorithmType(value);
     }
 
     const handleSpeedChange = (increase:boolean) => {
         if(increase && speed < 3){
             setSpeed(speed+1);
-            setSpeedValue(speed+1)
         }
         if(!increase && speed > 1){
             setSpeed(speed-1);
-            setSpeedValue(speed-1)
         }
     }
 

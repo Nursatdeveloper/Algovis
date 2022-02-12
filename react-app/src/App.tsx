@@ -1,28 +1,37 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Quicksort from './algorithms/Quicksort';
+import SelectionSort from './algorithms/SelectionSort';
 import API_URL from './ApiUrl';
 import './App.css';
 import Chart from './components/Chart';
 import Header from './components/Header';
+import ISortingData from './types/ISortingData';
 import SortingParam from './types/SortingParam';
+
 
 
 function App() {
   
   const [sortParams, setSortParams] = useState<SortingParam>({algorithm:'', range:0, speed:1});
   const [startSort, setStartSort] = useState<boolean>(false);
-  const [data, setData] = useState<number[]>([]);
+  const [data, setData] = useState<ISortingData>({
+    array:[],
+    currentIndex:0,
+    changingIndex:0
+  });
+  const [highlightIndexes, setHighlightIndexes] = useState<number[]>([]);
   const apiUrl = API_URL;
 
-  
-
   useEffect(()=>{
-    console.log(sortParams.speed);
     if(sortParams.range != 0){
       axios.post(`${apiUrl}/api/data/get-random-data/${sortParams.range}`)
       .then((res) => {
-        setData(res.data)
+        setData({
+          array:res.data,
+          currentIndex:0,
+          changingIndex:0
+        })
         if(startSort){
           defineAlgorithm()
         }
@@ -36,17 +45,26 @@ function App() {
   }, [sortParams, startSort])
 
   function defineAlgorithm(){
-    
+    let timeout = 300/sortParams.speed
     if(sortParams.algorithm == 'Quicksort'){
-      Quicksort(data, setData, 150)
+      //Quicksort(data, setData, timeout)
+      setStartSort(false);
+    }
+    else if (sortParams.algorithm == 'Selection sort'){
+      SelectionSort(data, setData, timeout)
       setStartSort(false);
     }
   }
 
+
+
   return (
     <div className="App">
       <Header startSorting={setStartSort} sortParam={setSortParams}/>
-      <Chart data={data}/>
+      {sortParams.range != 0 ? 
+        <Chart 
+          data={data}
+        /> :null}
     </div>
   );
 }
