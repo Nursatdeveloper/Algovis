@@ -1,16 +1,13 @@
 import React, { FC, useState } from 'react'
 import './SubHeader.css'
 
-interface ISortParam{
-    algoType:string;
-    range:number;
-}
 
 interface SubHeaderProps {
     marginTop:number;
     setAlgorithmType:(type:string) => void;
     setRange:(range:number) => void;
     setStartSorting:(start:boolean) => void;
+    setSpeedValue:(speed:number) => void;
 }
 
 const SubHeader:FC<SubHeaderProps> = ({
@@ -18,10 +15,13 @@ const SubHeader:FC<SubHeaderProps> = ({
     setAlgorithmType, 
     setRange,
     setStartSorting,
+    setSpeedValue,
     children
 }) => {
+
     const [dataRange, setDataRange] = useState<number>(10);
     const [algorithm, setAlgorithm] = useState<string>('');
+    const [speed, setSpeed] = useState<number>(1);
 
     function handleSortClick(){
         if(algorithm != '' && dataRange != 0){
@@ -38,6 +38,17 @@ const SubHeader:FC<SubHeaderProps> = ({
     const handleAlgorithmChange = (value:string) => {
         setAlgorithm(value)
         setAlgorithmType(value);
+    }
+
+    const handleSpeedChange = (increase:boolean) => {
+        if(increase && speed < 3){
+            setSpeed(speed+1);
+            setSpeedValue(speed+1)
+        }
+        if(!increase && speed > 1){
+            setSpeed(speed-1);
+            setSpeedValue(speed-1)
+        }
     }
 
   return (
@@ -65,8 +76,17 @@ const SubHeader:FC<SubHeaderProps> = ({
                 </div>
             </div>
         </div>
-        <div>Speed</div>
-        
+        <div className='subheader__speed_container'>
+            <div className='subheader__text'>
+                <span>Speed:</span>
+            </div>
+            <div className='speed_input_wrapper'>
+                <button className='speed_btn' onClick={()=> handleSpeedChange(false)}>-</button>
+                <input type="text" className='speed_display'value={speed+"x"}/>
+                <button className='speed_btn' onClick={()=> handleSpeedChange(true)}>+</button>
+            </div>
+        </div>
+
         {children}
         <div className='subheader__btn_container'>
             <button className='subheader__sort_btn' onClick={handleSortClick} >Sort</button>

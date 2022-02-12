@@ -10,7 +10,7 @@ import SortingParam from './types/SortingParam';
 
 function App() {
   
-  const [sortParams, setSortParams] = useState<SortingParam>({algorithm:'', range:0});
+  const [sortParams, setSortParams] = useState<SortingParam>({algorithm:'', range:0, speed:1});
   const [startSort, setStartSort] = useState<boolean>(false);
   const [data, setData] = useState<number[]>([]);
   const apiUrl = API_URL;
@@ -18,6 +18,7 @@ function App() {
   
 
   useEffect(()=>{
+    console.log(sortParams.speed);
     if(sortParams.range != 0){
       axios.post(`${apiUrl}/api/data/get-random-data/${sortParams.range}`)
       .then((res) => {
@@ -35,7 +36,7 @@ function App() {
   }, [sortParams, startSort])
 
   function defineAlgorithm(){
-    console.log(sortParams.algorithm)
+    
     if(sortParams.algorithm == 'Quicksort'){
       Quicksort(data, setData, 150)
       setStartSort(false);

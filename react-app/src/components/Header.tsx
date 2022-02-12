@@ -16,17 +16,26 @@ const Header: FC<HeaderProps> = ({sortParam, startSorting, children}) => {
 
     const [algorithmType, setAlgorithmType] = useState<string>('');
     const [range, setRange] = useState<number>(0);
+    const [speedValue, setSpeedValue] = useState<number>(1);
 
     useEffect(()=> {
         if(algorithmType != '' && range != 0){
-            let param:SortingParam = {algorithm:algorithmType, range:range}
+            let param:SortingParam = {
+                algorithm:algorithmType, 
+                range:range,
+                speed: speedValue
+            }
             sortParam(param)
         }
         else if (algorithmType == '' && range != 0){
-            let param:SortingParam = {algorithm:'', range:range}
+            let param:SortingParam = {
+                algorithm:algorithmType, 
+                range:range,
+                speed:speedValue
+            }
             sortParam(param)
         }
-    }, [algorithmType, range])
+    }, [algorithmType, range, speedValue])
 
 
 
@@ -59,6 +68,7 @@ const Header: FC<HeaderProps> = ({sortParam, startSorting, children}) => {
             </div>
         </div>
         <SubHeader 
+            setSpeedValue={setSpeedValue}
             setStartSorting={startSorting}
             setAlgorithmType={setAlgorithmType}
             setRange={setRange}
