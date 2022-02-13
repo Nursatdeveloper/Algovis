@@ -9,7 +9,7 @@ import Chart from './components/Chart';
 import Header from './components/Header';
 import RightSidebar from './components/RightSidebar';
 import ISortingData from './types/ISortingData';
-import SortingParam from './types/SortingParam';
+import SortingParam from './types/ISortingParam';
 
 
 
@@ -22,16 +22,20 @@ function App() {
     currentIndex:0,
     changingIndex:0
   });
+  const [colWidth, setColWidth] = useState<number>(10);
   const apiUrl = API_URL;
 
   useEffect(()=>{
     if(sortParams.range != 0){
       axios.post(`${apiUrl}/api/data/get-random-data/${sortParams.range}`)
       .then((res) => {
+        if(sortParams.range*10 < 450){
+          setColWidth(Math.round(450/sortParams.range))
+        }
         setData({
           array:res.data,
           currentIndex:0,
-          changingIndex:0
+          changingIndex:0,
         })
         if(startSort){
           defineAlgorithm()
@@ -70,9 +74,13 @@ function App() {
         {sortParams.range != 0 ? 
           <Chart 
             data={data}
+            colWidth={colWidth}
           /> :null}
 
-        {sortParams.algorithm != '' ? <RightSidebar /> : null }
+        {sortParams.algorithm != '' ?
+         <RightSidebar 
+          algorithmName={sortParams.algorithm}
+         /> : null }
         
       </div>
     </div>

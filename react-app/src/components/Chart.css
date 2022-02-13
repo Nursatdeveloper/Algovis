@@ -58,5 +58,6 @@
     display: flex;
     border-top:3px solid #24305E;
     width:fit-content;
+    max-width: 1000px;
 
 }

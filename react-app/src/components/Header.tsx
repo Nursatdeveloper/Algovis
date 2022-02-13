@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useRef, useState } from 'react'
-import SortingParam from '../types/SortingParam';
+import SortingParam from '../types/ISortingParam';
 import './Header.css'
 import SubHeader from './SubHeader'
 
@@ -19,22 +19,12 @@ const Header: FC<HeaderProps> = ({sortParam, startSorting, children}) => {
     const [speedValue, setSpeedValue] = useState<number>(1);
 
     useEffect(()=> {
-        if(algorithmType != '' && range != 0){
-            let param:SortingParam = {
-                algorithm:algorithmType, 
-                range:range,
-                speed: speedValue
-            }
-            sortParam(param)
+        let param:SortingParam = {
+            algorithm:algorithmType, 
+            range:range,
+            speed:speedValue
         }
-        else if (algorithmType == '' && range != 0){
-            let param:SortingParam = {
-                algorithm:algorithmType, 
-                range:range,
-                speed:speedValue
-            }
-            sortParam(param)
-        }
+        sortParam(param)
     }, [algorithmType, range, speedValue])
 
 

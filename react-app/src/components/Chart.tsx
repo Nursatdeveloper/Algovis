@@ -5,9 +5,10 @@ import Column from './Column'
 
 interface ChartProps{
     data:ISortingData;
+    colWidth:number;
 }
 
-const Chart:FC<ChartProps> = ({data}) => {
+const Chart:FC<ChartProps> = ({data, colWidth}) => {
   
   function getBgColor(index:number){
     if(index == data.currentIndex){
@@ -48,7 +49,7 @@ const Chart:FC<ChartProps> = ({data}) => {
         {data.array.map(function(height, i) {
           var color:string = getBgColor(i)
           return  (
-            <Column key={i++} height={height} bgColor={color} />
+            <Column key={i++} height={height} bgColor={color} colWidth={colWidth} />
           )
 
         })}

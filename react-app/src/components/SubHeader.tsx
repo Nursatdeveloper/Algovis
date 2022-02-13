@@ -19,7 +19,7 @@ const SubHeader:FC<SubHeaderProps> = ({
     children
 }) => {
 
-    const [dataRange, setDataRange] = useState<number>(10);
+    const [dataRange, setDataRange] = useState<number>(20);
     const [algorithm, setAlgorithm] = useState<string>('');
     const [speed, setSpeed] = useState<number>(1);
 
@@ -27,7 +27,6 @@ const SubHeader:FC<SubHeaderProps> = ({
         if(algorithm != '' && dataRange != 0){
             setStartSorting(true);
             setSpeedValue(speed)
-            setAlgorithmType(algorithm);
         }
         
     }
@@ -39,14 +38,18 @@ const SubHeader:FC<SubHeaderProps> = ({
 
     const handleAlgorithmChange = (value:string) => {
         setAlgorithm(value)
+        setAlgorithmType(value);
+        setRange(dataRange)
     }
 
     const handleSpeedChange = (increase:boolean) => {
         if(increase && speed < 4){
             setSpeed(speed+1);
+            setSpeedValue(speed+1);
         }
         if(!increase && speed > 1){
             setSpeed(speed-1);
+            setSpeedValue(speed-1);
         }
     }
 
@@ -68,7 +71,7 @@ const SubHeader:FC<SubHeaderProps> = ({
                     <span>Range:</span>
                 </div>
                 <div className='slider_input'>
-                    <input type="range" min="10" max="100" value={dataRange} className="slider" 
+                    <input type="range" min="20" max="100" value={dataRange} className="slider" 
                         onInput={(e: React.ChangeEvent<HTMLInputElement>,):void => handleRangeChange(e)}/>
                 </div>
                 <div className='slider_range_wrapper'>

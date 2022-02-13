@@ -17,7 +17,7 @@ namespace backend.Controllers
             Random random = new ();
             for (int i = 0; i < range; i++)
             {
-                randomNumbers[i] = random.Next(50, 400);
+                randomNumbers[i] = random.Next(50, 500);
             }
             return new JsonResult(randomNumbers);
         }
