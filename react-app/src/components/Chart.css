@@ -1,5 +1,6 @@
 .column{
     width:10px;
+    border:0.1px solid #374785;
 }
 .chart__container{
     position:absolute;

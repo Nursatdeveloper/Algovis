@@ -62,7 +62,7 @@ const SubHeader:FC<SubHeaderProps> = ({
                 <option>Bubble sort</option>
                 <option>Selection sort</option>
                 <option>Insertion sort</option>
-                <option>Quick sort</option>          
+                <option>Quicksort</option>          
             </select>
         </div>
         <div className="subheader__slide_container">

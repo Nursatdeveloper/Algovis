@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import BubbleSort from './algorithms/BubbleSort';
 import InsertionSort from './algorithms/InsertionSort';
+import InitializeQuicksort from './algorithms/Quicksort';
 import SelectionSort from './algorithms/SelectionSort';
 import API_URL from './ApiUrl';
 import './App.css';
@@ -50,6 +51,7 @@ function App() {
   }, [sortParams, startSort])
 
   function defineAlgorithm(){
+    console.log(sortParams.algorithm)
     let timeout = 300/sortParams.speed
     if(sortParams.algorithm == 'Bubble sort'){
       BubbleSort(data, setData, timeout)
@@ -61,6 +63,10 @@ function App() {
     }
     else if (sortParams.algorithm == 'Insertion sort'){
       InsertionSort(data, setData, timeout)
+      setStartSort(false);
+    }
+    else if (sortParams.algorithm == 'Quicksort'){
+      InitializeQuicksort(data, setData, timeout)
       setStartSort(false);
     }
   }
