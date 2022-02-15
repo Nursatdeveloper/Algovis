@@ -5,8 +5,9 @@ import Column from './Column'
 
 interface ChartProps{
     data:ISortingData;
-    colWidth:number;
+    colWidth?:number;
 }
+const data = [60, 70, 100, 150, 180, 300, 100, 350, 270];
 
 const Chart:FC<ChartProps> = ({data, colWidth}) => {
   
@@ -18,9 +19,7 @@ const Chart:FC<ChartProps> = ({data, colWidth}) => {
       return '#0099ff'
     }
 
-    else{
-      return '#24306E';
-    }
+    return '#24306E';
   }
 
   return (

@@ -8,7 +8,7 @@ interface ColumnProps {
 
 const Column: FC<ColumnProps> = ({height, bgColor, colWidth}) => {
   return (
-    <div className='column' style={{height:height, backgroundColor:bgColor, width:colWidth}}>
+    <div className='column' style={{height:height, backgroundColor:bgColor, width:`${colWidth}%`}}>
             </div>
   )
 }

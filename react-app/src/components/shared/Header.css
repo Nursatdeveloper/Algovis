@@ -23,18 +23,23 @@
     font-size:24px;
     font-weight: 600;
     color: #24306E;
+    text-decoration: none;
 }
 
 .header__item_wrapper{
     margin-top:18px;
     margin-bottom:15px;
+    margin-left:40px;
+    padding-left:5px;
+    padding-right:5px;
+}
+
+.header__item{
     font-size:16px;
     font-weight:600;
     color:#24306E;
     cursor:pointer;
-    margin-left:40px;
-    padding-left:5px;
-    padding-right:5px;
+    text-decoration: none;
 }
 
 .hover__underline_animation{

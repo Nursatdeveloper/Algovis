@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
-import Bubblesort from '../algorithm_codes/Bubblesort';
-import Insertionsort from '../algorithm_codes/Insertionsort';
-import Quicksort from '../algorithm_codes/Quicksort';
-import Selectionsort from '../algorithm_codes/Selectionsort';
+import Bubblesort from '../data/algorithm_codes/Bubblesort';
+import Insertionsort from '../data/algorithm_codes/Insertionsort';
+import Quicksort from '../data/algorithm_codes/Quicksort';
+import Selectionsort from '../data/algorithm_codes/Selectionsort';
 import './Codeviewer.css'
 
 interface CodeviewerProps{
@@ -11,7 +11,6 @@ interface CodeviewerProps{
 
 
 const Codeviewer:FC<CodeviewerProps> = ({algorithmName}) => {
-    const a = "{";
   return (
     <div className='codeviewer__container'>
         <div className='codeviewer__header'>
