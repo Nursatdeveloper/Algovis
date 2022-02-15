@@ -1,21 +1,23 @@
 import React, { FC, useEffect, useState } from 'react'
-import ISortingData from '../types/ISortingData'
+import IChartData from '../types/IChartData';
 import './Chart.css'
 import Column from './Column'
 
 interface ChartProps{
-    data:ISortingData;
+    data:IChartData;
     colWidth?:number;
+    target:string;
+    itemIndex?:number;
+    setItemIndex:(index:number)=> void
 }
-const data = [60, 70, 100, 150, 180, 300, 100, 350, 270];
 
-const Chart:FC<ChartProps> = ({data, colWidth}) => {
+const Chart:FC<ChartProps> = ({data, colWidth, target, setItemIndex, itemIndex}) => {
   
   function getBgColor(index:number){
     if(index == data.currentIndex){
       return '#ff3300'
     }
-    else if (index == data.changingIndex){
+    else if (index == data.targetIndex){
       return '#0099ff'
     }
 
@@ -41,17 +43,26 @@ const Chart:FC<ChartProps> = ({data, colWidth}) => {
           <div className='blue_square'>
 
           </div>
-          <span>Changing item</span>
+          <span>{target} item</span>
         </div>
       </div>
       <div className='chart__body'>
-        {data.array.map(function(height, i) {
-          var color:string = getBgColor(i)
-          return  (
-            <Column key={i++} height={height} bgColor={color} colWidth={colWidth} />
-          )
-
-        })}
+        {target == 'Changing' ?  
+          data.array.map(function(height, i) {
+            var color:string = getBgColor(i)
+            console.log(color);
+            return  (
+              <Column key={i++} index={i++} height={height} bgColor={color} colWidth={colWidth} onClick={() => null}/>
+            )
+          }) 
+        : 
+          data.array.map(function(height, i) {
+            var color:string = getBgColor(i)
+            return  (
+              <Column key={i++} index={i++} height={height} bgColor={color} colWidth={colWidth} onClick={setItemIndex} clickedItemIndex={itemIndex}/>
+            )
+          }) 
+        }
       </div>
         
     </div>

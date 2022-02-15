@@ -67,10 +67,6 @@
     border:2px solid #24305E;
     font-size:14px;
 }
-.subheader__select_option option:hover{
-    background-color: #24305E;
-    color:white;
-}
 
 
 .subheader__slide_container{
@@ -99,7 +95,7 @@
 }
 .slider_input{
     width:95%;
-    margin-top:3px;
+    margin-top:0px;
 }
 
 .slider-range-wrapper{

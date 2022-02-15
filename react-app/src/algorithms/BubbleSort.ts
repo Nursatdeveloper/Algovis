@@ -1,7 +1,7 @@
-import Timer from "../Timer";
-import ISortingData from "../types/ISortingData";
+import Timer from "../helpers/Timer";
+import IChartData from "../types/IChartData";
 
-async function BubbleSort(data:ISortingData, setData:(data:ISortingData)=> void, timeout:number){
+async function BubbleSort(data:IChartData, setData:(data:IChartData)=> void, timeout:number){
     var array = Array.from(data.array);
     for(let i = 0; i < array.length; i++){
         for(let j = 0; j < array.length - i; j++ ){
@@ -9,10 +9,10 @@ async function BubbleSort(data:ISortingData, setData:(data:ISortingData)=> void,
                 let temp = array[j];
                 array[j] = array[j+1];
                 array[j+1] = temp;
-                let newData:ISortingData = {
+                let newData:IChartData = {
                     array:array,
                     currentIndex:j,
-                    changingIndex:j+1
+                    targetIndex:j+1
                 }
                 setData(newData);
                 await Timer(timeout)

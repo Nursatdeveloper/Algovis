@@ -11,7 +11,8 @@ const algorithmArray:ISortingAlgorithm[] = [
   {name:"Bubble sort", timeComplexity:"O(n^2)"},
   {name:"Selection sort", timeComplexity:"O(n^2)"},
   {name:"Insertion sort", timeComplexity:"O(n^2)"},
-  {name:"Quicksort", timeComplexity:"O(n*log(n))"}
+  {name:"Quicksort", timeComplexity:"O(n*log(n))"},
+  {name:"Linear search", timeComplexity:"O(n)"}
 ]
 
 

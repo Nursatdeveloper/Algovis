@@ -6,7 +6,8 @@ import SelectionSort from '../algorithms/SelectionSort'
 import Chart from '../components/Chart'
 import RightSidebar from '../components/RightSidebar'
 import SortingAlgorithmList from '../data/SortingAlgorithmList'
-import ISortingData from '../types/ISortingData'
+import GetRandomData from '../helpers/GetRandomData'
+import IChartData from '../types/IChartData'
 import './Sort.css'
 
 const Sort = () => {
@@ -15,19 +16,19 @@ const Sort = () => {
     const [speed, setSpeed] = useState<number>(1);
     const [delay, setDelay] = useState<number>(300);
     const [columnWidth, setColumnWidth] = useState<number>(20)
-    const [sortingData, setSortingData] = useState<ISortingData>({
+    const [sortingData, setSortingData] = useState<IChartData>({
         array:[],
         currentIndex:0,
-        changingIndex:0
+        targetIndex:0
     })
 
     useEffect(() => {
-        const randomData = getRangomData(range);
+        const randomData = GetRandomData(range);
         setColumnWidth(100/range);
         setSortingData({
             array:randomData,
             currentIndex:0,
-            changingIndex:0
+            targetIndex:0
         })
     }, [range])
 
@@ -43,14 +44,6 @@ const Sort = () => {
                 setDelay(delay/speed);
             }
         }
-    }
-    
-    const getRangomData = (range:number) => {
-        const randomData:number[] = [];
-        for(let i = 0; i < range; i++){
-            randomData[i] = Math.floor(Math.random() * (400 - 50)) + 50; 
-        }
-        return randomData;
     }
 
     const sortData = () => {
@@ -108,7 +101,7 @@ const Sort = () => {
         </div>
         <div className='sort__body' id="myId">
             <div className='sort__chart_container'>
-                <Chart data={sortingData} colWidth={columnWidth}/>
+                <Chart data={sortingData} colWidth={columnWidth} target="Changing" setItemIndex={()=>null}/>
             </div>
             <div className='sort__algorithm_code'>
                 {algorithm != '' ? <RightSidebar algorithmName={algorithm}/> : null}

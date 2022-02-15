@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import Bubblesort from '../data/algorithm_codes/Bubblesort';
 import Insertionsort from '../data/algorithm_codes/Insertionsort';
+import Linearsearch from '../data/algorithm_codes/Linearsearch';
 import Quicksort from '../data/algorithm_codes/Quicksort';
 import Selectionsort from '../data/algorithm_codes/Selectionsort';
 import './Codeviewer.css'
@@ -24,6 +25,7 @@ const Codeviewer:FC<CodeviewerProps> = ({algorithmName}) => {
             {algorithmName == 'Selection sort' ? <Selectionsort/> : null}
             {algorithmName == 'Insertion sort' ? <Insertionsort /> : null}
             {algorithmName == 'Quicksort' ? <Quicksort /> : null}
+            {algorithmName == 'Linear search' ? <Linearsearch /> : null}
         </div>
     </div>
   )

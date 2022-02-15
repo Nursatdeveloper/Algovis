@@ -1,10 +1,10 @@
-import Timer from "../Timer";
-import ISortingData from "../types/ISortingData";
+import Timer from "../helpers/Timer";
+import IChartData from "../types/IChartData";
 
 
 async function SelectionSort(
-    data:ISortingData, 
-    setData:(data:ISortingData)=> void, 
+    data:IChartData, 
+    setData:(data:IChartData)=> void, 
     timeout:number)
 
 {
@@ -20,10 +20,10 @@ async function SelectionSort(
         let temp = array[i];
         array[i] = array[minIndex];
         array[minIndex] = temp;
-        let newData:ISortingData = {
+        let newData:IChartData = {
             array:[...array],
             currentIndex:i,
-            changingIndex:minIndex
+            targetIndex:minIndex
         }
         setData(newData);
         await Timer(timeout);
