@@ -95,3 +95,17 @@
     border:1px solid #24306E;
     border-radius: 3px;
 }
+
+.search__message{
+    width:93%;
+    margin-left:auto;
+    margin-right:auto;
+    padding:10px;
+    background-color: #0099ff;
+    opacity: 0.8;
+    border-radius: 5px;
+    margin-top:27px;
+}
+.search__message span{
+    opacity: 1;
+}

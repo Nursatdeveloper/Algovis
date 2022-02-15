@@ -5,7 +5,7 @@ const code = [
     '   for(int i = 0; i < arr.Length; i++)',
     '       if(arr[i] == val)',
     '           Console.WriteLine($"Value {val} is located at index {i}");',
-    '   Console.WriteLine($"Array does not contain {val}}!);',
+    '   Console.WriteLine($"Array does not contain {val}!);',
     'static void Main(string[] args)',
     '   int[] arr = {1, 4, 6, 2, 4, 7, 5, 2, 9};',
     '   LinearSearch(arr, 4);',

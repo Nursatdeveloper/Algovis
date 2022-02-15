@@ -22,6 +22,7 @@ const Search = () => {
     }, [searchItem])
 
     useEffect(() => {
+        setSearchItem(-1);
         const randomData = GetRandomData(range);
         setColumnWidth(100/range);
         setSearchingData({
@@ -78,7 +79,9 @@ const Search = () => {
                     setItemIndex={setSearchItem} 
                     itemIndex={searchItem}
                 />
-
+                <div className='search__message'>
+                    <span>Click one of the bars above to label searching item!</span>
+                </div>
             </div>
             <div className='search__codeviewer'>
                 <RightSidebar algorithmName={algorithm}/>
