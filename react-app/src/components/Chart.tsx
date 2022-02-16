@@ -50,7 +50,6 @@ const Chart:FC<ChartProps> = ({data, colWidth, target, setItemIndex, itemIndex})
         {target == 'Changing' ?  
           data.array.map(function(height, i) {
             var color:string = getBgColor(i)
-            console.log(color);
             return  (
               <Column key={i++} index={i++} height={height} bgColor={color} colWidth={colWidth} onClick={() => null}/>
             )

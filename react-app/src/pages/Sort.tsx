@@ -36,28 +36,27 @@ const Sort = () => {
         if(increase){
             if(speed < 4){
                 setSpeed(speed + 1);
-                setDelay(delay/speed);
             }
         }else{
             if(speed > 1){
                 setSpeed(speed - 1);
-                setDelay(delay/speed);
             }
         }
     }
 
     const sortData = () => {
+        const timeout = 300/speed;
         if(algorithm == 'Bubble sort'){
-            BubbleSort(sortingData, setSortingData, delay);
+            BubbleSort(sortingData, setSortingData, timeout);
         }
         else if(algorithm == 'Selection sort'){
-            SelectionSort(sortingData, setSortingData, delay);
+            SelectionSort(sortingData, setSortingData, timeout);          
         }
         else if(algorithm == 'Insertion sort'){
-            InsertionSort(sortingData, setSortingData, delay);
+            InsertionSort(sortingData, setSortingData, timeout);
         }
         else if(algorithm == 'Quicksort'){
-            InitializeQuicksort(sortingData, setSortingData, delay);
+            InitializeQuicksort(sortingData, setSortingData, timeout);
         }
     }
     

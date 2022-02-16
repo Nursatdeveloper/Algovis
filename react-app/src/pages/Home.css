@@ -1,8 +1,95 @@
 .home__container{
-    border:1px solid #24306E;
-    height:300px;
+    height:fit-content;
     margin-top:80px;
     margin-left:auto;
     margin-right:auto;
     width:80%;
+}
+
+.home__welcome{
+    border:1px solid #24306E;
+    margin:5px;
+    height:40px;
+    background-color: #A8D0E6;
+    color:#24306E;
+    font-size:18px;
+    font-weight:600;
+    text-align: center;
+    padding-top:10px;
+}
+
+.home__body{
+    margin:5px;
+    display: flex;
+    margin-top:10px;
+
+}
+
+.body__right{
+    width:75%;
+    border:1px solid #24306E;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+.body__left{
+    width:25%;
+    border:1px solid #24306E;
+    margin-left:15px;
+    background-color: #A8D0E6;
+}
+
+.gif_container{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.gif__wrapper{
+    border:1px solid;
+    margin:5px;
+    color:#F8E9A1;
+    font-size:20px;
+    text-align: center;
+    padding-top:10px;
+    width:45%;
+    height:200px;
+    border:1px solid #24306E;
+    background-color: white;
+}
+
+.sort_gif__container{
+    height:100%;
+    width:90%;
+    margin-left:auto;
+    margin-right:auto;
+    background-image: url("../img/data_sorting.gif");
+    background-size: cover;
+    transition:width 0.5s ease-out, color 0.5s ease-in-out;
+}
+
+.sort_gif__container:hover{
+    width: 97%;
+    color:#A8D0E6;
+    cursor:pointer;
+}
+
+.search_gif__container{
+    height:93%;
+    width:90%;
+    margin-left:auto;
+    margin-right:auto;
+    background-image: url("../img/searching_data.gif");
+    background-size: cover;
+    transition:width 0.5s ease-out, color 0.5s ease-in-out;
+}
+
+.search_gif__container:hover{
+    width:97%;
+    color:#A8D0E6;
+    cursor:pointer;
+}
+
+.link__text{
+    text-decoration: none;
+    color:#F8E9A1;
 }

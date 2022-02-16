@@ -10,8 +10,8 @@ const Header = () => {
                 <Link className='header__name' to="/">Algovis</Link>  
             </div>
             <div className='header__item_wrapper hover__underline_animation'>
-                <Link to="/sort" className='header__item'>Sort visualization</Link>  
-                
+                <Link to="/sort" className='header__item'>Sort visualization
+                </Link>  
             </div>
             <div className='header__item_wrapper hover__underline_animation'>
             <Link to="/search" className='header__item'>Search visualization</Link>  
