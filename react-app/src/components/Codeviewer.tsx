@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import BinarySearch from '../data/algorithm_codes/BinarySearch';
 import Bubblesort from '../data/algorithm_codes/Bubblesort';
 import Insertionsort from '../data/algorithm_codes/Insertionsort';
 import Linearsearch from '../data/algorithm_codes/Linearsearch';
@@ -26,6 +27,7 @@ const Codeviewer:FC<CodeviewerProps> = ({algorithmName}) => {
             {algorithmName == 'Insertion sort' ? <Insertionsort /> : null}
             {algorithmName == 'Quicksort' ? <Quicksort /> : null}
             {algorithmName == 'Linear search' ? <Linearsearch /> : null}
+            {algorithmName == 'Binary search' ? <BinarySearch /> : null}
         </div>
     </div>
   )

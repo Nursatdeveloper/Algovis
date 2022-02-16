@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
+import BinarySearch from '../algorithms/BinarySearch';
 import LinearSearch from '../algorithms/LinearSearch';
 import Chart from '../components/Chart';
 import RightSidebar from '../components/RightSidebar';
 import SearchingAlgorithmList from '../data/SearchingAlgorithmList'
 import GetRandomData from '../helpers/GetRandomData';
+import Sort from '../helpers/Sort';
 import IChartData from '../types/IChartData';
 import './Search.css'
+
 const Search = () => {
 
     const [algorithm, setAlgorithm] = useState<string>('Linear search');
@@ -17,13 +20,17 @@ const Search = () => {
         targetIndex:0
     });
     const [searchItem, setSearchItem] = useState<number>(-1);
+
     useEffect(()=> {
         setSearchingData({...searchingData, targetIndex: searchItem})
     }, [searchItem])
 
     useEffect(() => {
         setSearchItem(-1);
-        const randomData = GetRandomData(range);
+        var randomData = GetRandomData(range);
+        if(algorithm == 'Binary search'){
+            randomData = Sort(randomData)
+        }
         setColumnWidth(100/range);
         setSearchingData({
             array:randomData,
@@ -35,20 +42,37 @@ const Search = () => {
 
 
     const searchData = () => {
+        if(searchItem == -1){
+            return alert("Please click one of the bars!")
+        }
         if(algorithm == 'Linear search'){
-            console.log(searchItem)
             setSearchingData({...searchingData, targetIndex:searchItem})
-            LinearSearch(searchingData, setSearchingData, 300)
-            
+            LinearSearch(searchingData, setSearchingData, 300)  
+        }
+        else{
+            setSearchingData({...searchingData, targetIndex:searchItem})
+            BinarySearch(searchingData, setSearchingData, 300)  
         }
     }
+
+    const handleAlgorithmChange = (algorithm:string) => {
+        setAlgorithm(algorithm);
+        if(algorithm == 'Binary search'){
+            const sortedArray = Sort(searchingData.array)
+            setSearchingData({
+                ...searchingData,
+                array: sortedArray
+            })
+        }
+    }
+    
 
   return (
     <div className='search__container'>
         <div className='search__header'>
             <div className='header__algorithm_wrapper'>
                 <span className='header__text'>Algorithm:</span>
-                <select className='subheader__select_option' onChange={(e => setAlgorithm(e.target.value))}>
+                <select className='subheader__select_option' onChange={(e => handleAlgorithmChange(e.target.value))}>
                     {SearchingAlgorithmList.map(algorithm => <option key={algorithm}>{algorithm}</option>)}       
                 </select>
             </div>
