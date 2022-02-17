@@ -10,7 +10,7 @@
     border:1px solid #24306E;
     margin:5px;
     height:40px;
-    background-color: #A8D0E6;
+    background-color: #F8E9A1;
     color:#24306E;
     font-size:18px;
     font-weight:600;
@@ -27,16 +27,15 @@
 
 .body__right{
     width:75%;
-    border:1px solid #24306E;
+
     padding-top:10px;
     padding-bottom:10px;
 }
 
 .body__left{
     width:25%;
-    border:1px solid #24306E;
+
     margin-left:15px;
-    background-color: #A8D0E6;
 }
 
 .gif_container{
@@ -92,4 +91,27 @@
 .link__text{
     text-decoration: none;
     color:#F8E9A1;
+}
+
+.body__left_row{
+    border:1px solid #24306E;
+    width:90%;
+    margin-right:auto;
+    margin-left:auto;
+    text-align: center;
+    background-color: #F8E9A1;
+    margin-top:15px;
+    padding-top:5px;
+    padding-bottom:5px;
+    transition: background-color 0.5s ease-in-out;
+}
+
+.body__left_row:hover{
+    background-color: #A8D0E6;
+}
+
+.leftrow__btn{
+    text-decoration: none;
+    color:#24306E;
+    font-weight: 600;
 }

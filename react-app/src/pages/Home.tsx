@@ -29,6 +29,17 @@ const Home = () => {
           </div>
         </div>
         <div className='body__left'>
+          <a href='https://github.com/Nursatdeveloper/algovis' className='leftrow__btn'>
+            <div className='body__left_row'>
+              GitHub
+            </div>
+          </a>
+
+          <a href='/documentation' className='leftrow__btn'>
+            <div className='body__left_row'>
+              Documentation
+            </div>
+          </a>
 
         </div>
       </div>

@@ -14,7 +14,6 @@ const Sort = () => {
     const [algorithm, setAlgorithm] = useState<string>('Bubble sort');
     const [range, setRange] = useState<number>(20);
     const [speed, setSpeed] = useState<number>(1);
-    const [delay, setDelay] = useState<number>(300);
     const [columnWidth, setColumnWidth] = useState<number>(20)
     const [sortingData, setSortingData] = useState<IChartData>({
         array:[],
